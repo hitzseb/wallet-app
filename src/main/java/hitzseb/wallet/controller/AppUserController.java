@@ -12,8 +12,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AppUserController {
 	private final AppUserService userService;
-	
-	@PostMapping("/api/v1/registration")
+
+    @PostMapping("/api/v1/registration")
     public void signUp(@RequestBody AppUser user) {
         userService.signUpUser(user);
     }

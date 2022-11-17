@@ -8,11 +8,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class WrbSecurityConfig {
+public class WebSecurityConfig {
 	@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/registration",
+                .antMatchers("/api/v1/registration",
                         "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**")
                 .permitAll()
                 .anyRequest().authenticated()

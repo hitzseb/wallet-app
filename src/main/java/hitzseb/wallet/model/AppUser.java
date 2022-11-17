@@ -28,7 +28,6 @@ public class AppUser implements UserDetails {
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
-	private boolean enabled;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -40,6 +39,10 @@ public class AppUser implements UserDetails {
 	public String getUsername() {
 		return email;
 	}
+	@Override
+    public String getPassword() {
+        return password;
+    }
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
@@ -54,6 +57,6 @@ public class AppUser implements UserDetails {
 	}
 	@Override
 	public boolean isEnabled() {
-		return enabled;
+		return true;
 	}
 }
