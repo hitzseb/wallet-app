@@ -10,7 +10,7 @@ import hitzseb.wallet.model.OperationType;
 
 public class OperationsFilter {
 	
-	public List<Operation> filterByType(List<Operation> operations, OperationType type) {
+	public static List<Operation> filterByType(List<Operation> operations, OperationType type) {
 		List<Operation> operationsByType = operations
 				.stream()
 				.filter(o -> o.getType() == type)
@@ -18,7 +18,7 @@ public class OperationsFilter {
 		return operationsByType;
 	}
 	
-	public List<Operation> filterByCategory(List<Operation> operations, Category category) {
+	public static List<Operation> filterByCategory(List<Operation> operations, Category category) {
 		List<Operation> operationsByCategory = operations
 				.stream()
 				.filter(o -> o.getCategory() == category)
@@ -26,7 +26,7 @@ public class OperationsFilter {
 		return operationsByCategory;
 	}
 	
-	public List<Operation> filterSinceDate(List<Operation> operations, LocalDate date) {
+	public static List<Operation> filterSinceDate(List<Operation> operations, LocalDate date) {
 		List<Operation> operationsSinceDate = operations
 				.stream()
 				.filter(o -> o.getDate().isAfter(date) || o.getDate().isEqual(date))

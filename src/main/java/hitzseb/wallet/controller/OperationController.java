@@ -27,8 +27,6 @@ import lombok.AllArgsConstructor;
 public class OperationController {
 	private final OperationService operationService;
 	private final AppUserService userService;
-	private final OperationsFilter filter;
-	private final OperationsSorter sorter;
 
 	@PostMapping("/api/v1/new-operation")
     public void newOperation(@RequestBody Operation operation) {
@@ -51,11 +49,11 @@ public class OperationController {
 		List<Operation> operations = 
 				operationService.findOperationsByUser(
 				userService.getCurrentUser());
-				sorter.sortOperations(
-				filter.filterByCategory(
-				filter.filterByType(
-				filter.filterSinceDate(
-				operations, date), type), category), order);
+		OperationsSorter.sortOperations(
+		OperationsFilter.filterByCategory(
+		OperationsFilter.filterByType(
+		OperationsFilter.filterSinceDate(
+		operations, date), type), category), order);
 		return null;
 	}
 	

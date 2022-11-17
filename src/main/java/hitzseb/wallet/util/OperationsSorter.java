@@ -9,7 +9,7 @@ import hitzseb.wallet.model.Operation;
 
 public class OperationsSorter {
 	
-	public List<Operation> sortOperations(List<Operation> operations, Order order) {
+	public static List<Operation> sortOperations(List<Operation> operations, Order order) {
 		switch(order) {
 			case MOST_RECENT:
 				return orderFromMostRecent(operations);
@@ -28,7 +28,7 @@ public class OperationsSorter {
 		}
 	}
 	
-	public List<Operation> orderFromMostRecent(List<Operation> operations) {
+	public static List<Operation> orderFromMostRecent(List<Operation> operations) {
 		List<Operation> sortedOperations = operations
 				.stream()
 				.sorted(Comparator
@@ -37,7 +37,7 @@ public class OperationsSorter {
 		return sortedOperations;
 	}
 	
-	public List<Operation> orderFromLeastRecent(List<Operation> operations) {
+	public static List<Operation> orderFromLeastRecent(List<Operation> operations) {
 		List<Operation> sortedOperations = operations
 				.stream()
 				.sorted(Comparator
@@ -46,7 +46,7 @@ public class OperationsSorter {
 		return sortedOperations;
 	}
 	
-	public List<Operation> orderFromHighestAmount(List<Operation> operations) {
+	public static List<Operation> orderFromHighestAmount(List<Operation> operations) {
 		List<Operation> sortedOperations = operations
 				.stream()
 				.sorted(Comparator
@@ -64,7 +64,7 @@ public class OperationsSorter {
 		return sortedOperations;
 	}
 	
-	public List<Operation> orderFromAtoZ(List<Operation> operations) {
+	public static List<Operation> orderFromAtoZ(List<Operation> operations) {
 		List<Operation> sortedOperations = operations
 				.stream()
 				.sorted(Comparator
@@ -73,7 +73,7 @@ public class OperationsSorter {
 		return sortedOperations;
 	}
 	
-	public List<Operation> orderFromZtoA(List<Operation> operations) {
+	public static List<Operation> orderFromZtoA(List<Operation> operations) {
 		List<Operation> sortedOperations = operations
 				.stream()
 				.sorted(Comparator
