@@ -36,8 +36,8 @@ public class AppUserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public Long getCurrentUserId() {
+    public AppUser getCurrentUser() {
         AppUser user = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user.getId();
+        return user;
     }
 }
