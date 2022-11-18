@@ -34,18 +34,12 @@ public class OperationController {
     }
 	
 	@GetMapping("/api/v1/operations")
-    @ResponseBody
-    public List<Operation> getCurrentUserOperations() {
-        return operationService.findOperationsByUser(userService.getCurrentUser());
-    }
-	
-	@GetMapping("/api/v1/operations/{category}/{type}/{date}/{order}")
 	@ResponseBody
 	public List<Operation> getOperationsSinceDate(
-			@PathVariable Category category, 
-			@PathVariable OperationType type,
-			@PathVariable LocalDate date, 
-			@PathVariable Order order) {
+			@RequestParam(required=false) Category category, 
+			@RequestParam(required=false) OperationType type,
+			@RequestParam(required=false) LocalDate date, 
+			@RequestParam(required=false) Order order) {
 		List<Operation> operations = 
 				operationService.findOperationsByUser(
 				userService.getCurrentUser());
@@ -64,17 +58,21 @@ public class OperationController {
     		@RequestParam OperationType type,
     		@RequestParam Category category,
     		@RequestParam LocalDate date) {
-        Operation operation = operationService.findOperationById(id);
-        operation.setDescription(description);
-        operation.setAmount(amount);
-        operation.setType(type);
-        operation.setCategory(category);
-        operation.setDate(date);
-        operationService.saveOperation(operation);
+		if(id == userService.getCurrentUser().getId()) {
+			Operation operation = operationService.findOperationById(id);
+	        operation.setDescription(description);
+	        operation.setAmount(amount);
+	        operation.setType(type);
+	        operation.setCategory(category);
+	        operation.setDate(date);
+	        operationService.saveOperation(operation);
+		}
     }
 
     @DeleteMapping("/api/v1/delete-operation/{id}")
     public void deleteOperation(@PathVariable Long id) {
-        operationService.deleteOperationById(id);
+    	if(id == userService.getCurrentUser().getId()) {
+    		operationService.deleteOperationById(id);
+    	}
     }
 }

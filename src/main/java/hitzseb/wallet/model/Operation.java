@@ -20,7 +20,7 @@ import lombok.Data;
 @Entity
 @Table(name = "operations")
 @Data
-public class Operation {
+public class Operation {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

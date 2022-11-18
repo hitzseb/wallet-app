@@ -18,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.Data;
 
 @Entity
-@Table(name = "app_users")
+@Table(name = "users")
 @Data
 public class AppUser implements UserDetails {
 	@Id
@@ -58,5 +58,5 @@ public class AppUser implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}
+	}	
 }

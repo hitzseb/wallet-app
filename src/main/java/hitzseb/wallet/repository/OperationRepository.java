@@ -9,6 +9,6 @@ import hitzseb.wallet.model.AppUser;
 import hitzseb.wallet.model.Operation;
 
 @Repository
-public interface OperationRepository extends JpaRepository<Operation, Long> {
-	List<Operation> findOperationsByUser(AppUser user);
+public interface OperationRepository extends JpaRepository<Operation, Long> {	
+	List<Operation> findOperationsByUser(AppUser user);	
 }
