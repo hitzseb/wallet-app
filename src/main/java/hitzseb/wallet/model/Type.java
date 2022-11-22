@@ -1,6 +1,7 @@
 package hitzseb.wallet.model;
 
-public enum OperationType {
+public enum Type {
+	ALL,
 	SPENT,
 	GAIN
 }

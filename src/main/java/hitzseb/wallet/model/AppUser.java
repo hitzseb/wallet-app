@@ -24,10 +24,10 @@ public class AppUser implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String email;
+	private String username;
 	private String password;
 	@Enumerated(EnumType.STRING)
-	private UserRole role;
+	private Role role;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -37,7 +37,7 @@ public class AppUser implements UserDetails {
 	}
 	@Override
 	public String getUsername() {
-		return email;
+		return username;
 	}
 	@Override
     public String getPassword() {
@@ -50,7 +50,7 @@ public class AppUser implements UserDetails {
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
-	}
+	}	
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
@@ -58,5 +58,5 @@ public class AppUser implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}	
+	}
 }

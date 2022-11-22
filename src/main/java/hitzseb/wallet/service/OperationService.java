@@ -28,5 +28,5 @@ public class OperationService {
 
     public void deleteOperationById(Long id) {
     	operationRepository.deleteById(id);
-    }
+    }  
 }

@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -20,17 +19,15 @@ import lombok.Data;
 @Entity
 @Table(name = "operations")
 @Data
-public class Operation {	
+public class Operation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String description;
 	private Double amount;
 	@Enumerated(EnumType.STRING)
-	private OperationType type;
-	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name = "category_id")
+	private Type type;
+	@Enumerated(EnumType.STRING)
 	private Category category;
 	private LocalDate date;
 	@JsonIgnore

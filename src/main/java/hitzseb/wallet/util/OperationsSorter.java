@@ -11,6 +11,8 @@ public class OperationsSorter {
 	
 	public static List<Operation> sortOperations(List<Operation> operations, Order order) {
 		switch(order) {
+			case NONE:
+				return operations;
 			case MOST_RECENT:
 				return orderFromMostRecent(operations);
 			case LEAST_RECENT:

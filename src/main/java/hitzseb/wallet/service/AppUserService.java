@@ -8,36 +8,36 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import hitzseb.wallet.model.AppUser;
-import hitzseb.wallet.model.UserRole;
+import hitzseb.wallet.model.Role;
 import hitzseb.wallet.repository.AppUserRepository;
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class AppUserService implements UserDetailsService {
-	private final static String USER_NOT_FOUND_MSG = "user with email %s not found";
+	private final static String USER_NOT_FOUND_MSG = "user with name %s not found";
 	private final AppUserRepository userRepository;
 	private final BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		return userRepository.findByEmail(email)
-				.orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return userRepository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException(
+						String.format(USER_NOT_FOUND_MSG, username)));
 	}
 	
 	public void signUpUser(AppUser user) {
-        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
+        boolean userExists = userRepository.findByUsername(user.getUsername()).isPresent();
         if (userExists) {
-            throw new IllegalStateException("email already taken");
+            throw new IllegalStateException("username already taken");
         }
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        user.setRole(UserRole.USER);
+        user.setRole(Role.USER);
         userRepository.save(user);
     }
-
+    
     public AppUser getCurrentUser() {
-        AppUser user = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user;
-    }
+		return (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}  
 }
